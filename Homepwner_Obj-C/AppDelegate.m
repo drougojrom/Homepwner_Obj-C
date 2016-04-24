@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ItemsViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,8 +18,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    ItemsViewController *itemsViewController = [[ItemsViewController alloc] init];
+    
+    // place view in the window hierarchy
+    self.window.rootViewController = itemsViewController;
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[UIViewController alloc]init];
     [self.window makeKeyAndVisible];
     return YES;
 }
