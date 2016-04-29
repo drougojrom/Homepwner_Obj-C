@@ -38,8 +38,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    // create an instance of UICell
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+    
+    // reused cell
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath: indexPath];
     
     NSArray *items = [[ItemStore sharedStore] allItems];
     Item *item  = items[indexPath.row];
@@ -47,6 +48,13 @@
     cell.textLabel.text = [item description];
     
     return cell;
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 }
 
 @end
