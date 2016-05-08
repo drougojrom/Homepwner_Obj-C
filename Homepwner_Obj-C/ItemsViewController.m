@@ -112,7 +112,22 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    CGRect frame = tableView.frame;
     
+    UIButton *add = [[UIButton alloc] initWithFrame:CGRectMake(frame.size.width-60, 10, 50, 30)];
+    add.titleLabel.text = @"+";
+    add.backgroundColor = [UIColor blueColor];
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+
+    [headerView addSubview:add];
+    
+    return headerView;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
 }
 
 -(UIView *)headerView
@@ -129,16 +144,7 @@
     [super viewDidLoad];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-    
-    // Adding top margin to the header view
-    UIEdgeInsets inset = UIEdgeInsetsMake(20, 0, 0, 0);
-    self.tableView.contentInset = inset;
-    
-    UIView *header = self.headerView;
-    // making the frame for the header view
-    header.frame = CGRectMake(0, 0, 400, 57);
-    
-    [self.tableView setTableHeaderView:header];
+
 }
 
 @end
